@@ -6,10 +6,16 @@ import {
     Heading,
     Button,
     useColorModeValue,
+    Menu,
+    MenuButton,
+    MenuList,
+    MenuItem,
+    IconButton,
 } from '@chakra-ui/react';
 import Logo from './config/logo';
 import ToggleTheme from './toggleTheme';
 import { useState } from 'react'
+import { FiMenu } from 'react-icons/fi';
 
 const Links = [
     { title: "Feature", href: "feature" },
@@ -17,13 +23,14 @@ const Links = [
     { title: "Testimonial", href: "testimonial" },
 ]
 
-const scrollToEml = (id) => {
-    const eml = document.getElementById(`${id}`)
+const scrollToEml = (emlId) => {
+    const eml = document.getElementById(`${emlId}`)
     eml?.scrollIntoView({ behavior: 'smooth' })
 }
 
 const Navbar = () => {
     const [currentPage, setCurrnetPage] = useState('/')
+
     return (
         <Box
             position={'fixed'}
@@ -57,7 +64,7 @@ const Navbar = () => {
                     direction={{ base: 'column', md: 'row' }}
                     display={{ base: 'none', md: 'flex' }}
                     width={{ base: 'full', md: 'auto' }}
-                    alignItems="center"
+                    aignItems="center"
                     mt={{ base: 4, md: 0 }}
                     flexGrow={1}
                     spacing={4}
@@ -65,14 +72,10 @@ const Navbar = () => {
                 >
                     {Links.map((link, index) => (
                         <Button
-                            bg={`${currentPage == link.href ? 'chakraContent' : ''}`}
-                            color={`${currentPage == link.href ? 'gray.700' : ''}`}
+                        bg={'#20202380'}
                             borderRadius={3}
                             key={index}
                             p={2}
-                            _hover={{
-                                bg: `${currentPage == link.href ? 'chakraContent' : ''}`
-                            }}
                             onClick={() => {
                                 setCurrnetPage(link.href)
                                 scrollToEml(link.href)
@@ -82,7 +85,36 @@ const Navbar = () => {
                         </Button>
                     ))}
                 </Stack>
-                <ToggleTheme />
+                <Stack direction={'row'}>
+                    <ToggleTheme />
+
+                    <Box display={{ base: "inline-block", md: "none" }}>
+                        <Menu isLazy>
+                            <MenuButton
+                                as={IconButton}
+                                aria-label='Options'
+                                icon={<FiMenu />}
+                                variant='outline'
+                            >
+                            </MenuButton>
+                            <MenuList as={Stack} spacing={2}>
+                                {Links.map((link, index) => (
+                                    <MenuItem
+                                        key={index}
+                                        as={Button}
+                                        onClick={() => scrollToEml(link.href)}
+                                        textColor={'chakraColor'}
+                                        _hover={{
+                                            textDecoration: "underline"
+                                        }}
+                                    >
+                                        {link.title}
+                                    </MenuItem>
+                                ))}
+                            </MenuList>
+                        </Menu>
+                    </Box>
+                </Stack>
             </Container>
         </Box >
     )

@@ -4,12 +4,13 @@ import {
     Heading,
     Button,
     Link,
+    useColorModeValue,
 } from '@chakra-ui/react'
 
 const Cta = () => {
     return (
         <Container id="cta" maxW="container.lg" py={20} textAlign="center">
-            <Heading size="lg" color="chakraContent" mb={4}>
+            <Heading size="lg" color={useColorModeValue('', 'chakraContent')} mb={4}>
                 Ready to Get Started?
             </Heading>
             <Button colorScheme="teal" size="lg">

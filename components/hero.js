@@ -15,11 +15,11 @@ const Hero = () => {
     <>
       <Container id="hero" maxW="container.lg" py={40} fontWeight={500} textAlign={'center'}>
         <Box textAlign="center" mb={8}>
-          <Heading variant="section-title" fontSize="7xl" color="chakraContent">
+          <Heading variant="section-title" fontSize={{ base: "4xl" ,md: '7xl' }} color="chakraContent">
             Make Landing Page Faster
           </Heading>
           <Text
-            fontSize="xl"
+            fontSize={{ base: "md", md: "xl" }}
             maxW="container.sm"
             mx="auto"
             color={useColorModeValue("gray.500", "chakraGray")}
@@ -28,7 +28,7 @@ const Hero = () => {
           </Text>
         </Box>
         <Button rightIcon={<FaGithub />} mt={8}>
-          <Link href="https://github.com/CuriousSavant">View Source</Link>
+          <Link href="https://github.com/CuriousSavant/chakra-landing-page-template">View Source</Link>
         </Button>
       </Container>
     </>
